@@ -16,13 +16,15 @@ public class GitDescribePlugin
     }
     if (project.getVersion().equals("unspecified")) {
       try {
-        final FileRepositoryBuilder builder = new FileRepositoryBuilder();
-        final Repository repository = builder.setGitDir(project.getRootDir())
+        final Repository repository = new FileRepositoryBuilder()
             .readEnvironment()
-            .findGitDir()
+            .findGitDir(project.getRootDir())
             .build();
         final Git git = new Git(repository);
-        project.setVersion(git.describe().setTags(true).call());
+        final String gitDescribeVersion = git.describe()
+            .setTags(true)
+            .call();
+        project.setVersion(gitDescribeVersion);
       } catch (Exception e) {
         project.getLogger().warn("Could not execute git describe: " + e);
         final String defaultVersion = System.getenv("DEFAULT_GIT_DESCRIBE_VERSION");
