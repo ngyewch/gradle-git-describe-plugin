@@ -21,15 +21,18 @@ plugins {
 The project version used can also be specified via (in order of precedence):
 * Project property
     ```
-    ./gradlew build -Pversion=v1.0.0
+    # omit the 'v' prefix
+    ./gradlew build -Pversion=1.0.0
     ```
 * Environment variable
     ```
+    # specify the 'v' prefix
     GIT_DESCRIBE_VERSION=v1.0.0 ./gradlew build
     ```
   
 The default project version can be specified via an environment variable
 
 ```
+# specify the 'v' prefix
 DEFAULT_GIT_DESCRIBE_VERSION=v0.0.0 ./gradlew build
 ```
