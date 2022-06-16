@@ -23,11 +23,12 @@ public class GitDescribePlugin
         final Git git = new Git(repository);
         final String gitDescribeOutput = git.describe()
             .setTags(true)
+            .setMatch("v*")
             .call();
         if (gitDescribeOutput != null) {
           final boolean clean = git.status().call().isClean();
           final String gitDescribeVersion = String.format("%s%s",
-              gitDescribeOutput, clean ? "" : "-dirty");
+              gitDescribeOutput.substring(1), clean ? "" : "-dirty");
           project.setVersion(gitDescribeVersion);
         }
       } catch (Exception e) {
