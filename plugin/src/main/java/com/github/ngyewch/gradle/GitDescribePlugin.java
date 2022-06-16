@@ -21,9 +21,12 @@ public class GitDescribePlugin
             .findGitDir(project.getRootDir())
             .build();
         final Git git = new Git(repository);
-        final String gitDescribeVersion = git.describe()
-            .setTags(true)
-            .call();
+        final boolean clean = git.status().call().isClean();
+        final String gitDescribeVersion = String.format("%s%s",
+            git.describe()
+                .setTags(true)
+                .call(), clean ? "" : "-dirty");
+
         project.setVersion(gitDescribeVersion);
       } catch (Exception e) {
         project.getLogger().warn("Could not execute git describe: " + e);
