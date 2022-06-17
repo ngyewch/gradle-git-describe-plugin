@@ -1,6 +1,6 @@
 # gradle-git-describe-plugin
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/ngyewch/gradle-git-describe-plugin)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ngyewch/gradle-git-describe-plugin)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ngyewch/gradle-git-describe-plugin/Java%20CI)
 
 A Gradle plugin for setting the project version to the value returned by `git describe --tags`
