@@ -5,34 +5,28 @@
 
 A Gradle plugin for setting the project version to the value returned by `git describe --tags`
 
-## Basic usage
+## Installation
 
-Kotlin DSL (`build.gradle.kts`)
+See https://plugins.gradle.org/plugin/io.github.ngyewch.git-describe
 
+## Overview
+
+If `project.version` is already set, this plugin does nothing. Example:
 ```
-plugins {
-    java
-    id("io.github.ngyewch.git-describe") version "0.1.0"
-}
+# omit the 'v' prefix
+./gradlew build -Pversion=1.2.3
 ```
 
-## Advanced usage
-
-The project version used can also be specified via (in order of precedence):
-* Project property
-    ```
-    # omit the 'v' prefix
-    ./gradlew build -Pversion=1.0.0
-    ```
-* Environment variable
-    ```
-    # specify the 'v' prefix
-    GIT_DESCRIBE_VERSION=v1.0.0 ./gradlew build
-    ```
-  
-The default project version can be specified via an environment variable
-
+Else if the environment variable `GIT_DESCRIBE_VERSION` is set, it is used as the value for `project.version` (the 'v' prefix is removed):
 ```
 # specify the 'v' prefix
-DEFAULT_GIT_DESCRIBE_VERSION=v0.0.0 ./gradlew build
+GIT_DESCRIBE_VERSION=v1.2.3 ./gradlew build
+```
+
+Else if `git describe --tags --match 'v*' --dirty` returns a value, it is used as the value for `project.version` (the 'v' prefix is removed).
+
+Else if the environment variable `DEFAULT_GIT_DESCRIBE_VERSION` is set, it is used as the value for `project.version` (the 'v' prefix is removed):
+```
+# specify the 'v' prefix
+DEFAULT_GIT_DESCRIBE_VERSION=v1.0.0 ./gradlew build
 ```
