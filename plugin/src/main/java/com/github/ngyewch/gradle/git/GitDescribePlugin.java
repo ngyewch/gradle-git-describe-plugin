@@ -1,4 +1,4 @@
-package com.github.ngyewch.gradle;
+package com.github.ngyewch.gradle.git;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;

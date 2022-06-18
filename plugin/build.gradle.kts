@@ -44,7 +44,7 @@ gradlePlugin {
             id = "io.github.ngyewch.git-describe"
             displayName = "Gradle git describe plugin"
             description = "Gradle git describe plugin."
-            implementationClass = "com.github.ngyewch.gradle.GitDescribePlugin"
+            implementationClass = "com.github.ngyewch.gradle.git.GitDescribePlugin"
         }
     }
 }
