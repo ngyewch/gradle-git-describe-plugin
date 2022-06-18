@@ -48,8 +48,7 @@ public class GitDescribePlugin
           .call();
       if (gitDescribeOutput != null) {
         final boolean clean = git.status().call().isClean();
-        final String gitDescribeVersion = String.format("%s%s",
-            gitDescribeOutput.substring(1), clean ? "" : "-dirty");
+        final String gitDescribeVersion = String.format("%s%s", gitDescribeOutput, clean ? "" : "-dirty");
         return gitDescribeVersion.substring(1);
       }
     } catch (Exception e) {
